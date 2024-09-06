@@ -18,6 +18,9 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+val jar: Jar by tasks
+jar.enabled = false
+
 subprojects {
     apply(plugin = "java")
     apply(plugin = "kotlin")
@@ -55,4 +58,10 @@ subprojects {
     kotlin {
         jvmToolchain(17)
     }
+}
+
+project(":file-spring-boot") {
+    val jar: Jar by tasks
+    jar.archiveFileName.set("file-spring-boot.jar")
+    jar.enabled = true
 }
