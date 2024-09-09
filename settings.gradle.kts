@@ -3,6 +3,5 @@ plugins {
 }
 rootProject.name = "toolstash"
 
-include("security-spring-boot")
-include("email-spring-boot")
 include("file-spring-boot")
+include("mail-spring-boot")

@@ -1,10 +1,3 @@
-plugins {
-    kotlin("jvm")
-}
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     //File Utils

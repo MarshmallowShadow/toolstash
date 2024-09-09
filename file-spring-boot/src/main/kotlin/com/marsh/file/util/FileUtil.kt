@@ -18,7 +18,6 @@ import java.util.Base64
 import java.util.Date
 import javax.imageio.ImageIO
 
-@Component
 object FileUtil {
     
     /**
