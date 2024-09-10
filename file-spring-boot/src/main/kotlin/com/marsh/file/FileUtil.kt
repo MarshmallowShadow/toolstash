@@ -1,4 +1,4 @@
-package com.marsh.file.util
+package com.marsh.com.marsh.file
 
 import com.fasterxml.uuid.Generators
 import org.apache.commons.io.FilenameUtils
