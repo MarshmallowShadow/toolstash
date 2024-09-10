@@ -1,5 +1,6 @@
 package com.marsh.mail.util
 
+import com.marsh.mail.dto.MailInfoDto
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import org.apache.commons.io.IOUtils
@@ -20,35 +21,27 @@ class MailUtil(
     private val javaMailSender: JavaMailSender
 ) {
     /**
-     *  @description 이메일 보내기
+     *  @description Basic Email Send Logic
      *  @return 업로드된 파일 경로
      */
     fun sendEmail(
-        sender: String,
-        recipient: String,
-        subject: String,
+        mailInfoDto: MailInfoDto,
         text: String,
-        attachment: List<MultipartFile>?,
-        logoPath: String?
     ) {
-        send(sender, recipient, subject, text, attachment, logoPath)
+        send(mailInfoDto.sender, mailInfoDto.recipient, mailInfoDto.subject, mailInfoDto.attachment, mailInfoDto.logoPath, text)
     }
 
 
     fun sendEmailThymeHtmlTemplate(
-        sender: String,
-        recipient: String,
-        subject: String,
+        mailInfoDto: MailInfoDto,
         baseUrl: String,
-        htmlPath: String?,
-        context: Context = Context(),
-        attachment: List<MultipartFile>?,
-        logoPath: String?
+        htmlPath: String,
     ) {
+        val context = Context()
         context.setVariable("baseUrl", baseUrl)
         val text = htmlTemplateEngine.process(htmlPath, context)
 
-        send(sender, recipient, subject, text, attachment, logoPath)
+        send(mailInfoDto.sender, mailInfoDto.recipient, mailInfoDto.subject, mailInfoDto.attachment, mailInfoDto.logoPath, text)
     }
 
 
@@ -56,9 +49,9 @@ class MailUtil(
         sender: String,
         recipient: String,
         subject: String,
-        text: String,
         attachment: List<MultipartFile>?,
-        logoPath: String?
+        logoPath: String?,
+        text: String
     ) {
 
         val mimeMessage: MimeMessage = javaMailSender.createMimeMessage()
