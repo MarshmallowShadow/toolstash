@@ -24,33 +24,8 @@ class MailUtil(
      *  @description Basic Email Send Logic
      *  @return 업로드된 파일 경로
      */
-    fun sendEmail(
+    private fun sendEmail(
         mailInfoDto: MailInfoDto,
-        text: String,
-    ) {
-        send(mailInfoDto.sender, mailInfoDto.recipient, mailInfoDto.subject, mailInfoDto.attachment, mailInfoDto.logoPath, text)
-    }
-
-
-    fun sendEmailThymeHtmlTemplate(
-        mailInfoDto: MailInfoDto,
-        baseUrl: String,
-        htmlPath: String,
-    ) {
-        val context = Context()
-        context.setVariable("baseUrl", baseUrl)
-        val text = htmlTemplateEngine.process(htmlPath, context)
-
-        send(mailInfoDto.sender, mailInfoDto.recipient, mailInfoDto.subject, mailInfoDto.attachment, mailInfoDto.logoPath, text)
-    }
-
-
-    private fun send(
-        sender: String,
-        recipient: String,
-        subject: String,
-        attachment: List<MultipartFile>?,
-        logoPath: String?,
         text: String
     ) {
 
@@ -58,21 +33,31 @@ class MailUtil(
         val message = MimeMessageHelper(mimeMessage, true, "utf-8")
 
         val logo = File.createTempFile("logo", ".png")
-        logoPath?.let {
-            val inputStream = FileSystemResource(ClassPathResource(logoPath).file).inputStream
+        mailInfoDto.logoPath?.let {
+            val inputStream = FileSystemResource(ClassPathResource(mailInfoDto.logoPath).file).inputStream
             val outputStream = FileOutputStream(logo)
             IOUtils.copy(inputStream, outputStream)
         }
 
-        attachment?.forEach { mFile ->
+        mailInfoDto.attachment?.forEach { mFile ->
             message.addAttachment(mFile.originalFilename!!, mFile)
         }
-        message.setFrom(InternetAddress(sender))
-        message.setTo(recipient)
-        message.setSubject(subject)
+        message.setFrom(InternetAddress(mailInfoDto.sender))
+        message.setTo(mailInfoDto.recipient)
+        message.setSubject(mailInfoDto.subject)
         message.setText(text, true)
-        if(logoPath != null) message.addInline("logo", logo)
+        if(mailInfoDto.logoPath != null) message.addInline("logo", logo)
 
         javaMailSender.send(mimeMessage)
+    }
+
+    fun sendEmailThymeHtmlTemplate(
+        mailInfoDto: MailInfoDto,
+        htmlPath: String,
+        context: Context = Context()
+    ) {
+        val text = htmlTemplateEngine.process(htmlPath, context)
+
+        sendEmail(mailInfoDto, text)
     }
 }
