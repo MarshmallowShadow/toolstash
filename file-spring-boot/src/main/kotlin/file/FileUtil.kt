@@ -24,6 +24,7 @@ object FileUtil {
      *  @description 생성 날짜 기준으로 폴더를 만들고 안에 파일을 업로드
      *  @sample /src/test/resources/test.txt
      *  @return 업로드된 파일 경로
+     *  @author Bo Seung Choi
      *  
      */
     fun uploadFile(uploadPath: String, originFile: MultipartFile): String {
@@ -34,9 +35,10 @@ object FileUtil {
 
     /**
      *
-     *  @description 생성 날짜 기준으로 폴더를 만들고 안에 파일을 업로드
-     *  @sample /src/test/resources/test.txt
-     *  @return 업로드된 파일 경로
+     *  @description 
+     *  @sample 
+     *  @return 
+     *  @author Bo Seung Choi
      *
      */
     fun viewFile(file: File): ByteArray {
@@ -53,9 +55,10 @@ object FileUtil {
 
     /**
      *
-     *  @description 생성 날짜 기준으로 폴더를 만들고 안에 파일을 업로드
-     *  @sample /src/test/resources/test.txt
-     *  @return 업로드된 파일 경로
+     *  @description 
+     *  @sample 
+     *  @return 
+     *  @author Bo Seung Choi
      *
      */
     fun deleteFile(file: File) {
@@ -64,9 +67,10 @@ object FileUtil {
 
     /**
      *
-     *  @description 생성 날짜 기준으로 폴더를 만들고 안에 파일을 업로드
-     *  @sample /src/test/resources/test.txt
-     *  @return 업로드된 파일 경로
+     *  @description 
+     *  @sample 
+     *  @return 
+     *  @author Bo Seung Choi
      *
      */
     fun downloadFile(file: File, fileName: String): ResponseEntity<InputStreamResource> {
@@ -94,9 +98,10 @@ object FileUtil {
 
     /**
      * 
-     * @description 이미지 크기 조정
+     * @description 이미지 파일 Base64형식의 스트링으로 변환
      * @sample /src/test/resources/
      * @return base64 String
+     * @author Bo Seung Choi
      * 
      */
     fun imageToBase64(image: File): String = Base64.getEncoder().encodeToString(Files.readAllBytes(image.toPath()))
@@ -105,6 +110,7 @@ object FileUtil {
      * 
      * @description 이미지 크기 조정
      * @sample /src/test/resources/
+     * @author Bo Seung Choi
      * 
      */
     fun resizeImage(originFile: File, specifiedWidth: Int, specifiedHeight: Int) {
