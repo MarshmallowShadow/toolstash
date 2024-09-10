@@ -21,8 +21,10 @@ class MailUtil(
     private val javaMailSender: JavaMailSender
 ) {
     /**
-     *  @description Basic Email Send Logic
-     *  @return 업로드된 파일 경로
+     *  
+     *  @description Basic logic for sending an email
+     *  @author Bo Seung Choi
+     *  
      */
     private fun sendEmail(
         mailInfoDto: MailInfoDto,
@@ -51,6 +53,12 @@ class MailUtil(
         javaMailSender.send(mimeMessage)
     }
 
+    /**
+     *  
+     *  @description Logic for sending an email using ThymeLeaf Template
+     *  @author Bo Seung Choi
+     *  
+     */
     fun sendEmailThymeHtmlTemplate(
         mailInfoDto: MailInfoDto,
         htmlPath: String,
