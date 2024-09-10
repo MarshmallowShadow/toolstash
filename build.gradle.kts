@@ -30,7 +30,6 @@ subprojects {
 
 
     group = "com.marsh"
-    version = "1.0-SNAPSHOT"
     java {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -42,6 +41,7 @@ subprojects {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("commons-io:commons-io:2.7")
         
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
@@ -63,5 +63,17 @@ subprojects {
 project(":file-spring-boot") {
     val jar: Jar by tasks
     jar.archiveFileName.set("file-spring-boot.jar")
+    jar.enabled = true
+}
+
+project(":mail-spring-boot") {
+    val jar: Jar by tasks
+    jar.archiveFileName.set("mail-spring-boot.jar")
+    jar.enabled = true
+}
+
+project(":security-spring-boot") {
+    val jar: Jar by tasks
+    jar.archiveFileName.set("security-spring-boot.jar")
     jar.enabled = true
 }
