@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     kotlin("jvm") version "1.9.10"
@@ -75,5 +74,11 @@ project(":mail-spring-boot") {
 project(":security-spring-boot") {
     val jar: Jar by tasks
     jar.archiveFileName.set("security-spring-boot.jar")
+    jar.enabled = true
+}
+
+project(":swagger-spring-boot-autoconfigure") {
+    val jar: Jar by tasks
+    jar.archiveFileName.set("swagger-spring-boot-autoconfigure.jar")
     jar.enabled = true
 }
