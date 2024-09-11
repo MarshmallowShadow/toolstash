@@ -5,10 +5,10 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.io.DecodingException
 import io.jsonwebtoken.security.Keys
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import java.util.Date
-import javax.servlet.http.HttpServletRequest
 
 class JwtTokenProvider(
     private val jwtSecret: String,
