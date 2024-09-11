@@ -8,8 +8,10 @@ import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.stereotype.Component
 import java.util.Date
 
+@Component
 class JwtTokenProvider(
     private val jwtSecret: String,
 ) {
