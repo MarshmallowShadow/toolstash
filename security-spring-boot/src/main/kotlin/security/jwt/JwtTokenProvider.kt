@@ -6,14 +6,17 @@ import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.io.DecodingException
 import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
 import java.util.Date
 
 @Component
+@ConditionalOnProperty("jwtSecret")
 class JwtTokenProvider(
-    private val jwtSecret: String,
+    @Value("\${jwtSecret}") private val jwtSecret: String,
 ) {
     private val secretKey = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
 
