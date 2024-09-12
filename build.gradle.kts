@@ -6,6 +6,26 @@ plugins {
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     id("org.springframework.boot") version "3.3.0"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.5.0"
+
+    id("maven-publish")
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
 }
 
 repositories {
