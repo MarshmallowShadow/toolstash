@@ -8,9 +8,8 @@
 name: Gradle Publish on Push to "master"
 
 on:
-  push:
-    branches:
-      - 'master'
+  release:
+    types: [created]
 
 jobs:
   build:
