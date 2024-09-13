@@ -68,6 +68,9 @@ subprojects {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
 
+    val jar: Jar by tasks
+    jar.enabled = true
+
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -80,28 +83,4 @@ subprojects {
     kotlin {
         jvmToolchain(17)
     }
-}
-
-project(":file-spring-boot") {
-    val jar: Jar by tasks
-    jar.archiveFileName.set("file-spring-boot.jar")
-    jar.enabled = true
-}
-
-project(":mail-spring-boot") {
-    val jar: Jar by tasks
-    jar.archiveFileName.set("mail-spring-boot.jar")
-    jar.enabled = true
-}
-
-project(":security-spring-boot") {
-    val jar: Jar by tasks
-    jar.archiveFileName.set("security-spring-boot.jar")
-    jar.enabled = true
-}
-
-project(":swagger-spring-boot-autoconfigure") {
-    val jar: Jar by tasks
-    jar.archiveFileName.set("swagger-spring-boot-autoconfigure.jar")
-    jar.enabled = true
 }
