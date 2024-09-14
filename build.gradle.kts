@@ -6,7 +6,6 @@ plugins {
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     id("org.springframework.boot") version "3.3.0"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.5.0"
-
     id("maven-publish")
 }
 
