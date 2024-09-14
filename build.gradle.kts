@@ -10,37 +10,6 @@ plugins {
     id("maven-publish")
 }
 
-repositories {
-    mavenCentral()
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-group = "com.marsh"
-version = "0.0.1-SNAPSHOT"
-
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-            }
-        }
-    }
-    publications {
-        register<MavenPublication>("gpr") {
-            from(components["java"])
-        }
-    }
-}
-
-
 val jar: Jar by tasks
 jar.enabled = false
 
@@ -64,9 +33,30 @@ subprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("commons-io:commons-io:2.7")
+        implementation("com.marsh.toolstash:encoding-spring-boot")
         
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
+
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
+                credentials {
+                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            register<MavenPublication>("gpr") {
+                from(components["java"])
+            }
+        }
+    }
+
+    group = "com.marsh.toolstash"
 
     val jar: Jar by tasks
     jar.enabled = true

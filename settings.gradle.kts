@@ -5,5 +5,6 @@ rootProject.name = "toolstash"
 
 include("file-spring-boot")
 include("mail-spring-boot")
+include("encoding-spring-boot")
 include("security-spring-boot-autoconfigure")
 include("swagger-spring-boot-autoconfigure")

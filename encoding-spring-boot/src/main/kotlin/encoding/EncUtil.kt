@@ -1,4 +1,4 @@
-package com.marsh.security.enc
+package encoding
 
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
