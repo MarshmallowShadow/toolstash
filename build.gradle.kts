@@ -10,6 +10,10 @@ plugins {
     id("maven-publish")
 }
 
+repositories {
+    mavenCentral()
+}
+
 val jar: Jar by tasks
 jar.enabled = false
 
@@ -33,7 +37,6 @@ subprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("commons-io:commons-io:2.7")
-        implementation("com.marsh.toolstash:encoding-spring-boot")
         
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
