@@ -21,12 +21,12 @@ import springfox.documentation.spring.web.plugins.Docket
 class SwaggerConfig(
     swaggerProperties: SwaggerProperties
 ) {
+    private val basePackage = swaggerProperties.basePackage
     private val title = swaggerProperties.title
     private val version = swaggerProperties.version
     private val description = swaggerProperties.description
     private val termsOfServiceUrl = swaggerProperties.termsOfServiceUrl
-    private val basePackage = swaggerProperties.basePackage
-    private val contract = Contact(swaggerProperties.name, swaggerProperties.contactUrl, swaggerProperties.email)
+    private val contact = Contact(swaggerProperties.contactName, swaggerProperties.contactUrl, swaggerProperties.email)
 
     @Bean
     fun autApi(): Docket =
@@ -57,7 +57,7 @@ class SwaggerConfig(
             .version(version)
             .description(description)
             .termsOfServiceUrl(termsOfServiceUrl)
-            .contact(contract)
+            .contact(contact)
             .build()
     }
 }
