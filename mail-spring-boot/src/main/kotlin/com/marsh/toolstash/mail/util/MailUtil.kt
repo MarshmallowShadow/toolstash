@@ -1,6 +1,6 @@
 package com.marsh.toolstash.mail.util
 
-import com.marsh.mail.dto.MailInfoDto
+import com.marsh.toolstash.mail.dto.MailInfoDto
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import org.apache.commons.io.IOUtils
@@ -8,14 +8,11 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.FileSystemResource
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
-import org.springframework.stereotype.Component
-import org.springframework.web.multipart.MultipartFile
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import java.io.File
 import java.io.FileOutputStream
 
-@Component
 class MailUtil(
     private val htmlTemplateEngine: TemplateEngine,
     private val javaMailSender: JavaMailSender
