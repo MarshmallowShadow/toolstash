@@ -3,8 +3,8 @@ plugins {
 }
 rootProject.name = "toolstash"
 
-include("file-spring-boot")
-include("mail-spring-boot")
-include("encoding-spring-boot")
-include("swagger-spring-boot-config")
-include("security-spring-boot-config")
+include("file-util")
+include("mail-util")
+include("encoding-util")
+include("swagger-config")
+include("security-config")

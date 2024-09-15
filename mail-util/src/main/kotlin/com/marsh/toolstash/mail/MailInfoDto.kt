@@ -1,4 +1,4 @@
-package com.marsh.toolstash.mail.dto
+package com.marsh.toolstash.mail
 
 import org.springframework.web.multipart.MultipartFile
 
