@@ -117,6 +117,7 @@ swagger:
 	email: marsh@example.com
 ```
 
+*Using Swagger UI: https://github.com/swagger-api/swagger-ui
 
 ## Security Autoconfiguration
 
