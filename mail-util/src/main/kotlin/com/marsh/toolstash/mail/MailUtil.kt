@@ -3,6 +3,7 @@ package com.marsh.toolstash.mail
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import org.apache.commons.io.IOUtils
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.FileSystemResource
 import org.springframework.mail.javamail.JavaMailSender
@@ -14,6 +15,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 @Component
+@ConditionalOnBean(MailConfig::class)
 class MailUtil(
     private val javaMailSender: JavaMailSender,
     private val htmlTemplateEngine: TemplateEngine,
