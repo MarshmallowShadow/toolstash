@@ -4,6 +4,23 @@ A small multi-module project by MarshmallowShadow
 
 This project contains a collection of potentially commonly used configurations and utilies for backend development!
 
+## Initial Setting
+
+Gradle
+
+```
+repositories {
+	mavenCentral()
+	maven {
+		url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
+		credentials {
+			username = $USERNAME
+			password = $TOKEN
+		}
+	}
+}
+```
+***$USERNAME** is your GitHub username and **$TOKEN** is the access token with read:repository scope
 
 ## Current Features
 
