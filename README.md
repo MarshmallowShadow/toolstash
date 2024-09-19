@@ -96,9 +96,11 @@ mail:
 	    mail:
             smtp:
                 auth: true
-                    starttls:
-                        enable: true
+                starttls:
+                    enable: true
 ```
+
+List of STMP Host and Ports: https://www.arclab.com/en/kb/email/list-of-smtp-and-pop3-servers-mailserver-list.html
 
 ## Swagger Autoconfiguration
 
