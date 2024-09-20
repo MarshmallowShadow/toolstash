@@ -1,5 +1,4 @@
 
-version = "0.0.1-SNAPSHOT"
 
 dependencies {
     implementation("com.fasterxml.uuid:java-uuid-generator:4.3.0")
