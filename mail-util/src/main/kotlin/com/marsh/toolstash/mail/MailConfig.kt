@@ -18,7 +18,7 @@ class MailConfig(
         javaMailSender.port = mailConfigProperties.port
         javaMailSender.username = mailConfigProperties.username
         javaMailSender.password = mailConfigProperties.password
-        if(mailConfigProperties.properties != null) javaMailSender.javaMailProperties = mailConfigProperties.properties!!
+        if(mailConfigProperties.properties != null) javaMailSender.javaMailProperties = mailConfigProperties.properties
 
         return javaMailSender
     }
