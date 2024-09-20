@@ -3,9 +3,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.9.10"
     kotlin("plugin.spring") version "1.9.10"
+    kotlin("kapt") version "1.9.10"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     id("org.springframework.boot") version "3.3.0"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
     id("maven-publish")
 }
 
@@ -19,6 +20,7 @@ jar.enabled = false
 subprojects {
     apply(plugin = "java")
     apply(plugin = "kotlin")
+    apply(plugin = "kotlin-kapt")
     apply(plugin = "maven-publish")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.springframework.boot")
@@ -37,7 +39,7 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("commons-io:commons-io:2.7")
 
-        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+        kapt("org.springframework.boot:spring-boot-configuration-processor")
         
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
@@ -61,7 +63,7 @@ subprojects {
     }
 
     group = "com.marsh.toolstash"
-    version = "0.0.10-SNAPSHOT"
+    version = "0.0.11-SNAPSHOT"
 
     val jar: Jar by tasks
     jar.enabled = true
