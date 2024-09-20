@@ -11,5 +11,5 @@ data class MailConfigProperties @ConstructorBinding constructor (
     val port: Int,
     val username: String,
     val password: String,
-    val properties: Properties
+    val properties: Properties?
 )
