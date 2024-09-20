@@ -35,8 +35,9 @@ subprojects {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.springframework.boot:spring-boot-configuration-processor")
         implementation("commons-io:commons-io:2.7")
+
+        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
         
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }

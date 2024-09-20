@@ -5,9 +5,9 @@ import java.util.Properties
 
 @ConfigurationProperties(prefix = "marsh.mail")
 data class MailConfigProperties (
-    var host: String,
-    var port: Int,
-    var username: String,
-    var password: String,
-    var properties: Properties?
+    val host: String,
+    val port: Int,
+    val username: String,
+    val password: String,
+    val properties: Properties?
 )

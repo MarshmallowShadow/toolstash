@@ -4,13 +4,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "marsh.security")
 data class SecurityConfigProperties (
-    var authorizeList: Array<AuthorizeProperties>?,
-    var ignoreList: Array<String>?
+    val authorizeList: Array<AuthorizeProperties>?,
+    val ignoreList: Array<String>?
 ) {
     class AuthorizeProperties (
-        var httpMethod: String?,
-        var pattern: String,
-        var role: Array<String>,
+        val httpMethod: String?,
+        val pattern: String,
+        val role: Array<String>,
     )
 
     override fun equals(other: Any?): Boolean {
