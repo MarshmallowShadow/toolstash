@@ -3,7 +3,7 @@ package com.marsh.toolstash.mail
 import org.springframework.boot.context.properties.ConfigurationProperties
 import java.util.Properties
 
-@ConfigurationProperties(prefix = "marsh.mail")
+@ConfigurationProperties("marsh.mail")
 data class MailConfigProperties (
     val host: String,
     val port: Int,

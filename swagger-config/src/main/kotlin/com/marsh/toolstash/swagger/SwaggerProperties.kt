@@ -2,7 +2,7 @@ package com.marsh.toolstash.swagger
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "marsh.swagger")
+@ConfigurationProperties("marsh.swagger")
 data class SwaggerProperties (
     val basePackage: String,
     val title: String,

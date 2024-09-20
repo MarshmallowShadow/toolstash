@@ -2,7 +2,7 @@ package com.marsh.toolstash.security.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "marsh.security")
+@ConfigurationProperties("marsh.security")
 data class SecurityConfigProperties (
     val authorizeList: Array<AuthorizeProperties>?,
     val ignoreList: Array<String>?
