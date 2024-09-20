@@ -1,4 +1,4 @@
-package com.marsh.toolstash
+package com.marsh.toolstash.swagger
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
