@@ -3,7 +3,7 @@ package com.marsh.toolstash.swagger
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.bind.ConstructorBinding
 
-@ConfigurationProperties(prefix = "swagger")
+@ConfigurationProperties(prefix = "marsh.swagger")
 data class SwaggerProperties @ConstructorBinding constructor (
     val basePackage: String,
     val title: String,

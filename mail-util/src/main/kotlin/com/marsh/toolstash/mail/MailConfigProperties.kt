@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding
 import org.springframework.stereotype.Component
 import java.util.Properties
 
-@ConfigurationProperties(prefix = "mail")
+@ConfigurationProperties(prefix = "marsh.mail")
 data class MailConfigProperties @ConstructorBinding constructor (
     val host: String,
     val port: Int,

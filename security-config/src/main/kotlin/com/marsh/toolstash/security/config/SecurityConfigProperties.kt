@@ -3,7 +3,7 @@ package com.marsh.toolstash.security.config
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.bind.ConstructorBinding
 
-@ConfigurationProperties(prefix = "security")
+@ConfigurationProperties(prefix = "marsh.security")
 data class SecurityConfigProperties @ConstructorBinding constructor (
     val authorizeList: Array<AuthorizeProperties>?,
     val ignoreList: Array<String>?
