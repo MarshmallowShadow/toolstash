@@ -36,7 +36,7 @@ class SecurityConfig(
                 configProperties.authorizeList?.forEach { 
                     if(it.httpMethod != null)
                         authorize(
-                            HttpMethod.valueOf(it.httpMethod),
+                            HttpMethod.valueOf(it.httpMethod!!),
                             it.pattern,
                             if(!it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
                         )
