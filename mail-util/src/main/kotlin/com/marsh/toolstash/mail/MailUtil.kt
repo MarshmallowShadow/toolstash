@@ -26,7 +26,7 @@ class MailUtil(
      *  @author Bo Seung Choi
      *  
      */
-    private fun sendEmail(
+    fun sendEmail(
         mailInfoDto: MailInfoDto,
         text: String
     ) {
