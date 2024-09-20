@@ -1,16 +1,17 @@
 package com.marsh.toolstash.security.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.bind.ConstructorBinding
 
 @ConfigurationProperties(prefix = "security")
-data class SecurityConfigProperties (
-    var authorizeList: Array<AuthorizeProperties>?,
-    var ignoreList: Array<String>?
+data class SecurityConfigProperties @ConstructorBinding constructor (
+    val authorizeList: Array<AuthorizeProperties>?,
+    val ignoreList: Array<String>?
 ) {
     class AuthorizeProperties (
-        var httpMethod: String?,
-        var pattern: String,
-        var role: Array<String>,
+        val httpMethod: String?,
+        val pattern: String,
+        val role: Array<String>,
     )
 
     override fun equals(other: Any?): Boolean {

@@ -60,7 +60,7 @@ class SecurityConfig(
         WebSecurityCustomizer { web: WebSecurity ->
             configProperties.ignoreList?.let {
                 web.ignoring().requestMatchers(
-                    *configProperties.ignoreList
+                    *it
                 )
             }
         }
