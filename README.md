@@ -92,12 +92,8 @@ mail:
 	port: 587
 	username: marsh@example.com
 	password: 12345678
-	properties: 
-	    mail:
-            smtp:
-                auth: true
-                starttls:
-                    enable: true
+    smtpAuth: true
+    starttlsEnable: true
 ```
 
 List of STMP Host and Ports: https://www.arclab.com/en/kb/email/list-of-smtp-and-pop3-servers-mailserver-list.html

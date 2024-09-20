@@ -9,5 +9,6 @@ data class MailConfigProperties (
     val port: Int,
     val username: String,
     val password: String,
-    val properties: Properties?
+    val smtpAuth: Boolean = true,
+    val starttlsEnable: Boolean = true
 )
