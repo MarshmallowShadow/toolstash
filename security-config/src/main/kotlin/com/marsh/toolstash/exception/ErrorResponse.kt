@@ -1,4 +1,4 @@
-package com.marsh.toolstash.security.jwt
+package com.marsh.toolstash.exception
 
 import org.springframework.http.HttpStatus
 import java.time.Clock

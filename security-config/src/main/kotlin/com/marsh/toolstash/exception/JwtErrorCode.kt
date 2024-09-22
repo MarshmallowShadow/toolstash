@@ -1,4 +1,4 @@
-package com.marsh.toolstash.security.jwt
+package com.marsh.toolstash.exception
 
 enum class JwtErrorCode {
     INVALID_SIGNATURE,

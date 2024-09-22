@@ -1,7 +1,7 @@
-package com.marsh.toolstash.security.config
+package com.marsh.toolstash.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.marsh.toolstash.security.jwt.ErrorResponse
+import com.marsh.toolstash.exception.ErrorResponse
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpStatus

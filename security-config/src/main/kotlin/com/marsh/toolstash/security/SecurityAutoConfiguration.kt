@@ -1,11 +1,13 @@
-package com.marsh.toolstash.security.config
+package com.marsh.toolstash.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.marsh.toolstash.security.jwt.JwtAuthenticationFilter
-import com.marsh.toolstash.security.jwt.JwtTokenProvider
+import com.marsh.toolstash.jwt.JwtAuthenticationFilter
+import com.marsh.toolstash.jwt.JwtTokenProvider
+import org.springframework.boot.autoconfigure.AutoConfiguration
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
@@ -16,16 +18,21 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
-@Configuration
-@EnableConfigurationProperties(SecurityConfigProperties::class)
+@AutoConfiguration
 @EnableWebSecurity
-class SecurityConfig(
+@EnableConfigurationProperties(SecurityConfigProperties::class)
+class SecurityAutoConfiguration(
     private val objectMapper: ObjectMapper,
     private val jwtTokenProvider: JwtTokenProvider,
     private val configProperties: SecurityConfigProperties
 ) {
 
     @Bean
+    @ConditionalOnBean(JwtTokenProvider::class)
+    @ConditionalOnProperty(
+        prefix = "marsh.security",
+        name = ["authorizeList"]
+    )
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             httpBasic { disable() }
@@ -56,6 +63,10 @@ class SecurityConfig(
     }
 
     @Bean
+    @ConditionalOnProperty(
+        prefix = "marsh.security",
+        name = ["ignoreList"]
+    )
     fun ignoringCustomizer() =
         WebSecurityCustomizer { web: WebSecurity ->
             configProperties.ignoreList?.let {

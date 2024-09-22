@@ -1,6 +1,9 @@
-package com.marsh.toolstash.security.jwt
+package com.marsh.toolstash.jwt
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.marsh.toolstash.exception.ErrorResponse
+import com.marsh.toolstash.exception.JwtErrorCode
+import com.marsh.toolstash.exception.JwtException
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.MalformedJwtException
 import io.jsonwebtoken.io.DecodingException

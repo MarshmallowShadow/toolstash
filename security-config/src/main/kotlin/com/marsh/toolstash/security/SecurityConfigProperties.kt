@@ -1,4 +1,4 @@
-package com.marsh.toolstash.security.config
+package com.marsh.toolstash.security
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

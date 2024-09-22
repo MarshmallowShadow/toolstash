@@ -1,4 +1,4 @@
-package com.marsh.toolstash.security.jwt
+package com.marsh.toolstash.jwt
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
@@ -14,9 +14,8 @@ import org.springframework.stereotype.Component
 import java.util.Date
 
 @Component
-@ConditionalOnProperty("jwtSecret")
 class JwtTokenProvider(
-    @Value("\${jwtSecret}") private val jwtSecret: String,
+    @Value("\${jwtSecret}") private val jwtSecret: String
 ) {
     private val secretKey = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
 
