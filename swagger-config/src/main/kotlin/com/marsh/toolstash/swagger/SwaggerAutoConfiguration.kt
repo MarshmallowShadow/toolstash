@@ -1,8 +1,9 @@
 package com.marsh.toolstash.swagger
 
+import org.springframework.boot.autoconfigure.AutoConfiguration
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import springfox.documentation.builders.ApiInfoBuilder
 import springfox.documentation.builders.RequestHandlerSelectors
 import springfox.documentation.oas.annotations.EnableOpenApi
@@ -15,10 +16,10 @@ import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spi.service.contexts.SecurityContext
 import springfox.documentation.spring.web.plugins.Docket
 
-@Configuration
+@AutoConfiguration
 @EnableOpenApi
 @EnableConfigurationProperties(SwaggerProperties::class)
-class SwaggerConfig(
+class SwaggerAutoConfiguration(
     swaggerProperties: SwaggerProperties
 ) {
     private val basePackage = swaggerProperties.basePackage
@@ -29,6 +30,10 @@ class SwaggerConfig(
     private val contact = Contact(swaggerProperties.contactName, swaggerProperties.contactUrl, swaggerProperties.email)
 
     @Bean
+    @ConditionalOnProperty(
+        prefix = "marsh.swagger",
+        name = ["basePackage", "title", "version", "description", "termsOfServiceUrl", "contactName", "contactUrl", "email"]
+    )
     fun autApi(): Docket =
         Docket(DocumentationType.OAS_30)
             .apiInfo(apiInfo())
