@@ -15,7 +15,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 @Component
-@ConditionalOnBean(JavaMailSender::class)
+@ConditionalOnBean(MailConfig::class)
 class MailUtil(
     private val javaMailSender: JavaMailSender,
     private val htmlTemplateEngine: TemplateEngine,
