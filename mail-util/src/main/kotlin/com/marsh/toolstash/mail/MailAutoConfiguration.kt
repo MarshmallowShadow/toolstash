@@ -1,15 +1,17 @@
 package com.marsh.toolstash.mail
 
+import org.springframework.boot.autoconfigure.AutoConfiguration
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
+import org.thymeleaf.TemplateEngine
 import java.util.Properties
 
-@Configuration
+@AutoConfiguration
 @EnableConfigurationProperties(MailConfigProperties::class)
-class MailConfig(
+class MailAutoConfiguration(
     private val mailConfigProperties: MailConfigProperties
 ){
     @Bean
@@ -24,7 +26,16 @@ class MailConfig(
         javaMailSender.username = mailConfigProperties.username
         javaMailSender.password = mailConfigProperties.password
         javaMailSender.javaMailProperties = props
-
+        
         return javaMailSender
+    }
+    
+    @Bean
+    @ConditionalOnBean(JavaMailSender::class)
+    fun mailUtil(
+        javaMailSender: JavaMailSender,
+        htmlTemplateEngine: TemplateEngine
+    ): MailUtil {
+        return MailUtil(javaMailSender, htmlTemplateEngine)
     }
 }
