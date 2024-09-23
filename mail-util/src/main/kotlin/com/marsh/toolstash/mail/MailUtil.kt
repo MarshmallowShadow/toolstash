@@ -8,15 +8,12 @@ import org.springframework.core.io.FileSystemResource
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Component
-import org.thymeleaf.TemplateEngine
-import org.thymeleaf.context.Context
 import java.io.File
 import java.io.FileOutputStream
 
 @Component
 class MailUtil(
     private val javaMailSender: JavaMailSender,
-    private val htmlTemplateEngine: TemplateEngine,
 ) {
     /**
      *  
@@ -49,21 +46,5 @@ class MailUtil(
         if(mailInfoDto.logoPath != null) message.addInline("logo", logo)
 
         javaMailSender.send(mimeMessage)
-    }
-
-    /**
-     *  
-     *  @description Logic for sending an email using ThymeLeaf Template
-     *  @author Bo Seung Choi
-     *  
-     */
-    fun sendEmailThymeHtmlTemplate(
-        mailInfoDto: MailInfoDto,
-        htmlPath: String,
-        context: Context = Context()
-    ) {
-        val text = htmlTemplateEngine.process(htmlPath, context)
-
-        sendEmail(mailInfoDto, text)
     }
 }

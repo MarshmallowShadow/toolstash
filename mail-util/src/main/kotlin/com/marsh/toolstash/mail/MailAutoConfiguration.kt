@@ -7,13 +7,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
-import org.thymeleaf.TemplateEngine
 import java.util.Properties
 
 @AutoConfiguration
-@EnableConfigurationProperties(MailConfigProperties::class)
+@EnableConfigurationProperties(MailProperties::class)
 class MailAutoConfiguration(
-    private val mailConfigProperties: MailConfigProperties
+    private val mailConfigProperties: MailProperties
 ){
     @Bean
     @ConditionalOnProperty(
@@ -38,9 +37,8 @@ class MailAutoConfiguration(
     @Bean
     @ConditionalOnBean(JavaMailSender::class)
     fun mailUtil(
-        javaMailSender: JavaMailSender,
-        htmlTemplateEngine: TemplateEngine
+        javaMailSender: JavaMailSender
     ): MailUtil {
-        return MailUtil(javaMailSender, htmlTemplateEngine)
+        return MailUtil(javaMailSender)
     }
 }
