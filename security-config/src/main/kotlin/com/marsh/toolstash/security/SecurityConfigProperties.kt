@@ -12,7 +12,8 @@ data class SecurityConfigProperties (
         val pattern: String,
         val role: Array<String>,
     )
-
+    
+    /* Auto-Generated */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
