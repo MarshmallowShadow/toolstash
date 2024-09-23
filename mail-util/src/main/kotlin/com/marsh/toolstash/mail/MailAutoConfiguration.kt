@@ -2,6 +2,7 @@ package com.marsh.toolstash.mail
 
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -15,6 +16,7 @@ class MailAutoConfiguration(
     private val mailConfigProperties: MailProperties
 ){
     @Bean
+    @ConditionalOnMissingBean
     @ConditionalOnProperty(
         prefix = "marsh.mail",
         name = ["host", "port", "username", "password"]
