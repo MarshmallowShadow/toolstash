@@ -84,7 +84,7 @@ build.gradle.kts
 implementation("com.marsh.toolstash:mail-util")
 ```
 
-application.yml (sample)
+application.yml (example)
 
 ```
 mail:
@@ -118,7 +118,7 @@ build.gradle.kts
 implementation("com.marsh.toolstash:swagger-config")
 ```
 
-application.yml (sample)
+application.yml (example)
 
 ```
 swagger:
@@ -154,7 +154,7 @@ build.gradle.kts
 implementation("com.marsh.toolstash:swagger-config")
 ```
 
-application.yml (sample)
+application.yml (example)
 
 ```
 jwtSecret: 3hj546bjk6i7cesrjoi132cfyesr6ib0
