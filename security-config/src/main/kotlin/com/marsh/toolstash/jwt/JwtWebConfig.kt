@@ -7,14 +7,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-@ConfigurationProperties("marsh.jwt.resolver")
-data class JwtWebConfigProperties(
-    val enabled: Boolean = false
-)
-
 
 @AutoConfiguration
-@EnableConfigurationProperties(JwtWebConfigProperties::class)
+@EnableConfigurationProperties(JwtConfigProperties::class)
 @ConditionalOnProperty(
     name=["marsh.jwt.resolver.enabled"],
     havingValue = "true"

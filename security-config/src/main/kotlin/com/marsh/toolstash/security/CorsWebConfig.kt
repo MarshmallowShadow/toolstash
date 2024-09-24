@@ -7,15 +7,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-@ConfigurationProperties("marsh.security.cors.default")
-data class CorsWebConfigProperties(
-    val enabled: Boolean = false
-)
-
 @AutoConfiguration
-@EnableConfigurationProperties(CorsWebConfigProperties::class)
+@EnableConfigurationProperties(SecurityConfigProperties::class)
 @ConditionalOnProperty(
-    name=["marsh.security.cors.default.enabled"],
+    name=["marsh.security.cors.enabled"],
     havingValue = "true"
 )
 class CorsWebConfig: WebMvcConfigurer {

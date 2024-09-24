@@ -6,12 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 
-@ConfigurationProperties("marsh.jwt")
-data class JwtConfigProperties (
-    val enabled: Boolean = false,
-    val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION"
-)
-
 @AutoConfiguration
 @EnableConfigurationProperties(JwtConfigProperties::class)
 @ConditionalOnProperty(

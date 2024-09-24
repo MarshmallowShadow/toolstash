@@ -6,12 +6,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 data class SecurityConfigProperties (
     val enabled: Boolean = false,
     val authorizeList: Array<AuthorizeProperties>?,
-    val ignoreList: Array<String>?
+    val ignoreList: Array<String>?,
+    
+    val cors: CorsWebConfigDefault
 ) {
     class AuthorizeProperties (
         val pattern: String,
         val role: Array<String>,
         val httpMethod: String? = null,
+    )
+    
+    data class CorsWebConfigDefault (
+        val enabled: Boolean
     )
     
     /* Auto-Generated */
