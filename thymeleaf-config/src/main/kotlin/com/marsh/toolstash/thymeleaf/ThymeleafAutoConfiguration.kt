@@ -1,9 +1,9 @@
 package com.marsh.toolstash.thymeleaf
 
-import com.marsh.toolstash.thymeleaf.util.ThymeleafUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.MessageSource
@@ -22,6 +22,7 @@ class ThymeleafAutoConfiguration(
 
     @Bean
     @ConditionalOnBean(SpringResourceTemplateResolver::class)
+    @ConditionalOnMissingBean
     fun htmlTemplateEngine(
         messageSource: MessageSource
     ): SpringTemplateEngine {
@@ -38,6 +39,7 @@ class ThymeleafAutoConfiguration(
         prefix = "marsh.thymeleaf",
         name = ["prefix", "suffix", "isCacheable"]
     )
+    @ConditionalOnMissingBean
     fun springResourceTemplateResolver(): SpringResourceTemplateResolver {
         val springResourceTemplateResolver = SpringResourceTemplateResolver()
         
@@ -59,6 +61,7 @@ class ThymeleafAutoConfiguration(
         name = ["enabled"],
         havingValue = "true"
     )
+    @ConditionalOnMissingBean
     fun viewResolver(
         messageSource: MessageSource
     ): ViewResolver {
