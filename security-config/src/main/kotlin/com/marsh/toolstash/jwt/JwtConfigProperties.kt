@@ -7,7 +7,7 @@ data class JwtConfigProperties (
     val enabled: Boolean = false,
     val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION",
     
-    val resolver: JwtWebConfigResolver
+    val resolver: JwtWebConfigResolver = JwtWebConfigResolver()
 ) {
     data class JwtWebConfigResolver (
         val enabled: Boolean = false

@@ -8,7 +8,7 @@ data class SecurityConfigProperties (
     val authorizeList: Array<AuthorizeProperties>?,
     val ignoreList: Array<String>?,
     
-    val cors: CorsWebConfigDefault
+    val cors: CorsWebConfigDefault = CorsWebConfigDefault()
 ) {
     class AuthorizeProperties (
         val pattern: String,
@@ -17,7 +17,7 @@ data class SecurityConfigProperties (
     )
     
     data class CorsWebConfigDefault (
-        val enabled: Boolean
+        val enabled: Boolean = false
     )
     
     /* Auto-Generated */
