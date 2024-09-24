@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("marsh.swagger")
 data class SwaggerProperties (
-    val enabled: Boolean = false,
+    val enabled: Boolean = true,
     val basePackage: String?,
     val title: String?,
     val version: String?,

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean
 
 @ConfigurationProperties("marsh.jwt")
 class JwtConfigProperties (
-    val enabled: Boolean = false,
+    val enabled: Boolean = true,
     val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION"
 )
 
