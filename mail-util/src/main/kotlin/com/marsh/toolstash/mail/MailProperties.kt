@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("marsh.mail")
 data class MailProperties (
-    val enabled: Boolean = true,
+    val enabled: Boolean = false,
     val host: String?,
     val port: Int = 0,
     val username: String?,

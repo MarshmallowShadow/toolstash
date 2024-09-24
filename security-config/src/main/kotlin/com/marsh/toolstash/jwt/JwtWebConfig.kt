@@ -8,7 +8,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @ConfigurationProperties("marsh.jwt.resolver")
-class JwtWebConfigProperties(
+data class JwtWebConfigProperties(
     val enabled: Boolean = false
 )
 

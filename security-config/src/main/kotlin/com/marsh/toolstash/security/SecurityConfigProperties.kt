@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("marsh.security")
 data class SecurityConfigProperties (
-    val enabled: Boolean = true,
+    val enabled: Boolean = false,
     val authorizeList: Array<AuthorizeProperties>?,
     val ignoreList: Array<String>?
 ) {

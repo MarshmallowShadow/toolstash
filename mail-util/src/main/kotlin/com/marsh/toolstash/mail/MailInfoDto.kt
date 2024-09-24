@@ -6,6 +6,6 @@ class MailInfoDto(
     val sender: String,
     val recipient: String,
     val subject: String,
-    val attachment: List<MultipartFile>?,
-    val logoPath: String?
+    val attachment: List<MultipartFile>? = null,
+    val logoPath: String? = null
 )

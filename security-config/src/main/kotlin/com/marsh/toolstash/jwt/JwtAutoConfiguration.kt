@@ -7,8 +7,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 
 @ConfigurationProperties("marsh.jwt")
-class JwtConfigProperties (
-    val enabled: Boolean = true,
+data class JwtConfigProperties (
+    val enabled: Boolean = false,
     val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION"
 )
 
