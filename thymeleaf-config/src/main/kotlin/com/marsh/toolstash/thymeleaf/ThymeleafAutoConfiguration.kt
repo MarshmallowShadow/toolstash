@@ -16,6 +16,11 @@ import org.thymeleaf.templatemode.TemplateMode
 
 @AutoConfiguration
 @EnableConfigurationProperties(ThymeleafProperties::class)
+@ConditionalOnProperty(
+    prefix = "marsh.thymeleaf",
+    name = ["enabled"],
+    havingValue = "true"
+)
 class ThymeleafAutoConfiguration(
     private val thymeleafProperties: ThymeleafProperties
 ) {
@@ -35,10 +40,6 @@ class ThymeleafAutoConfiguration(
     }
 
     @Bean
-    @ConditionalOnProperty(
-        prefix = "marsh.thymeleaf",
-        name = ["prefix", "suffix", "isCacheable"]
-    )
     @ConditionalOnMissingBean
     fun springResourceTemplateResolver(): SpringResourceTemplateResolver {
         val springResourceTemplateResolver = SpringResourceTemplateResolver()

@@ -12,15 +12,16 @@ import java.util.Properties
 
 @AutoConfiguration
 @EnableConfigurationProperties(MailProperties::class)
+@ConditionalOnProperty(
+    prefix = "marsh.mail",
+    name = ["enabled"],
+    havingValue = "true"
+)
 class MailAutoConfiguration(
     private val mailConfigProperties: MailProperties
 ){
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(
-        prefix = "marsh.mail",
-        name = ["host", "port", "username", "password"]
-    )
     fun javaMailSender(): JavaMailSender {
         val props = Properties()
         props.setProperty("mail.smtp.auth", mailConfigProperties.smtpAuth.toString())

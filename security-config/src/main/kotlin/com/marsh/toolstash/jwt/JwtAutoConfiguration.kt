@@ -8,15 +8,19 @@ import org.springframework.context.annotation.Bean
 
 @ConfigurationProperties("marsh.jwt")
 class JwtConfigProperties (
-    val secret: String
+    val enabled: Boolean = false,
+    val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION"
 )
 
 @AutoConfiguration
 @EnableConfigurationProperties(JwtConfigProperties::class)
+@ConditionalOnProperty(
+    name = ["marsh.jwt.enabled"],
+    havingValue = "true"
+)
 class JwtAutoConfiguration(
     private val jwtConfigProperties: JwtConfigProperties
 ) {
     @Bean
-    @ConditionalOnProperty("marsh.jwt.secret")
     fun jwtTokenProvider() = JwtTokenProvider(jwtConfigProperties.secret)
 }

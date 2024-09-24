@@ -19,16 +19,17 @@ import springfox.documentation.spring.web.plugins.Docket
 @AutoConfiguration
 @EnableOpenApi
 @EnableConfigurationProperties(SwaggerProperties::class)
+@ConditionalOnProperty(
+    prefix = "marsh.swagger",
+    name = ["enabled"],
+    havingValue = "true"
+)
 class SwaggerAutoConfiguration(
     private val swaggerProperties: SwaggerProperties
 ) {
     private val contact = Contact(swaggerProperties.contactName, swaggerProperties.contactUrl, swaggerProperties.email)
 
     @Bean
-    @ConditionalOnProperty(
-        prefix = "marsh.swagger",
-        name = ["basePackage", "title", "version", "description", "termsOfServiceUrl", "contactName", "contactUrl", "email"]
-    )
     fun autApi(): Docket =
         Docket(DocumentationType.OAS_30)
             .apiInfo(apiInfo())

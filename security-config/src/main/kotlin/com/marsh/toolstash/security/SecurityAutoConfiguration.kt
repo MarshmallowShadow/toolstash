@@ -22,6 +22,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableConfigurationProperties(SecurityConfigProperties::class)
 @ConditionalOnBean(JwtTokenProvider::class)
+@ConditionalOnProperty(
+    name = ["marsh.security.enabled"],
+    havingValue = "true"
+)
 class SecurityAutoConfiguration(
     private val objectMapper: ObjectMapper,
     private val jwtTokenProvider: JwtTokenProvider,

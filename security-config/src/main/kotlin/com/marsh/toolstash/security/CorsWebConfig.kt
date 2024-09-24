@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @ConfigurationProperties("marsh.security.cors.default")
 class CorsWebConfigProperties(
-    val enabled: Boolean
+    val enabled: Boolean = false
 )
 
 @AutoConfiguration

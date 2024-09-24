@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @ConfigurationProperties("marsh.jwt.resolver")
 class JwtWebConfigProperties(
-    val enabled: Boolean
+    val enabled: Boolean = false
 )
 
 
