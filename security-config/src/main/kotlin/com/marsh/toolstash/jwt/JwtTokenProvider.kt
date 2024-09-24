@@ -15,7 +15,7 @@ import java.util.Date
 
 @Component
 class JwtTokenProvider(
-    @Value("\${jwtSecret}") private val jwtSecret: String
+    @Value("\${marsh.jwt.secret}") private val jwtSecret: String
 ) {
     private val secretKey = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
 
