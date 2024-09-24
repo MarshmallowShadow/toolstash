@@ -1,2 +1,3 @@
 com.marsh.toolstash.security.SecurityAutoConfiguration
 com.marsh.toolstash.jwt.JwtAutoConfiguration
+com.marsh.toolstash.jwt.JwtWebConfig
