@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AutoConfiguration
 @EnableWebSecurity
 @EnableConfigurationProperties(SecurityConfigProperties::class)
+@ConditionalOnBean(JwtTokenProvider::class)
 class SecurityAutoConfiguration(
     private val objectMapper: ObjectMapper,
     private val jwtTokenProvider: JwtTokenProvider,
@@ -28,11 +29,7 @@ class SecurityAutoConfiguration(
 ) {
 
     @Bean
-    @ConditionalOnBean(JwtTokenProvider::class)
-    @ConditionalOnProperty(
-        prefix = "marsh.security",
-        name = ["authorizeList"]
-    )
+    @ConditionalOnProperty("marsh.security.authorizeList")
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             httpBasic { disable() }
@@ -63,10 +60,7 @@ class SecurityAutoConfiguration(
     }
 
     @Bean
-    @ConditionalOnProperty(
-        prefix = "marsh.security",
-        name = ["ignoreList"]
-    )
+    @ConditionalOnProperty("marsh.security.ignoreList")
     fun ignoringCustomizer() =
         WebSecurityCustomizer { web: WebSecurity ->
             configProperties.ignoreList?.let {

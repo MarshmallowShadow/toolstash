@@ -57,8 +57,7 @@ class ThymeleafAutoConfiguration(
     @Autowired
     @ConditionalOnBean(SpringTemplateEngine::class)
     @ConditionalOnProperty(
-        prefix = "marsh.thymeleaf.viewResolver",
-        name = ["enabled"],
+        name = ["marsh.thymeleaf.viewResolver.enabled"],
         havingValue = "true"
     )
     @ConditionalOnMissingBean

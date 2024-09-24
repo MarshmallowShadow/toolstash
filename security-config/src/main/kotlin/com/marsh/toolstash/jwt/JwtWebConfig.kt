@@ -2,13 +2,21 @@ package com.marsh.toolstash.jwt
 
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
+@ConfigurationProperties("marsh.jwt.resolver")
+class JwtWebConfigProperties(
+    val enabled: Boolean
+)
+
+
 @AutoConfiguration
+@EnableConfigurationProperties(JwtWebConfigProperties::class)
 @ConditionalOnProperty(
-    prefix="marsh.jwt.resolver",
-    name=["enabled"],
+    name=["marsh.jwt.resolver.enabled"],
     havingValue = "true"
 )
 class JwtWebConfig(
