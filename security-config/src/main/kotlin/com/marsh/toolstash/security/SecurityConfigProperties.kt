@@ -8,9 +8,9 @@ data class SecurityConfigProperties (
     val ignoreList: Array<String>?
 ) {
     class AuthorizeProperties (
-        val httpMethod: String?,
         val pattern: String,
         val role: Array<String>,
+        val httpMethod: String? = null,
     )
     
     /* Auto-Generated */

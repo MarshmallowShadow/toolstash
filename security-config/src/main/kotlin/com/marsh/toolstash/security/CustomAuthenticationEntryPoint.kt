@@ -19,14 +19,12 @@ class CustomAuthenticationEntryPoint(
     ) {
         response?.status = HttpStatus.UNAUTHORIZED.value()
         response?.contentType = MediaType.APPLICATION_JSON_VALUE
-
-        val errorResponse = objectMapper.writeValueAsString(
+        response?.writer?.write(objectMapper.writeValueAsString(
             ErrorResponse(
                 httpStatus = HttpStatus.UNAUTHORIZED,
                 errorCode = "UNAUTHORIZED",
                 message = "로그인 후 이용 가능합니다."
             )
-        )
-        response?.writer?.write(errorResponse)
+        ))
     }
 }
