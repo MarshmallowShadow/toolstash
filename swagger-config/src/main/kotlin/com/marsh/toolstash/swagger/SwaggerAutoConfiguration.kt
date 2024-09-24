@@ -20,13 +20,8 @@ import springfox.documentation.spring.web.plugins.Docket
 @EnableOpenApi
 @EnableConfigurationProperties(SwaggerProperties::class)
 class SwaggerAutoConfiguration(
-    swaggerProperties: SwaggerProperties
+    private val swaggerProperties: SwaggerProperties
 ) {
-    private val basePackage = swaggerProperties.basePackage
-    private val title = swaggerProperties.title
-    private val version = swaggerProperties.version
-    private val description = swaggerProperties.description
-    private val termsOfServiceUrl = swaggerProperties.termsOfServiceUrl
     private val contact = Contact(swaggerProperties.contactName, swaggerProperties.contactUrl, swaggerProperties.email)
 
     @Bean
@@ -38,7 +33,7 @@ class SwaggerAutoConfiguration(
         Docket(DocumentationType.OAS_30)
             .apiInfo(apiInfo())
             .select()
-            .apis(RequestHandlerSelectors.basePackage(basePackage))
+            .apis(RequestHandlerSelectors.basePackage(swaggerProperties.basePackage))
             .build()
             .securitySchemes(listOf(apiKey()))
             .securityContexts(listOf(securityContext()))
@@ -58,10 +53,10 @@ class SwaggerAutoConfiguration(
 
     private fun apiInfo(): ApiInfo? {
         return ApiInfoBuilder()
-            .title(title)
-            .version(version)
-            .description(description)
-            .termsOfServiceUrl(termsOfServiceUrl)
+            .title(swaggerProperties.title)
+            .version(swaggerProperties.version)
+            .description(swaggerProperties.description)
+            .termsOfServiceUrl(swaggerProperties.termsOfServiceUrl)
             .contact(contact)
             .build()
     }

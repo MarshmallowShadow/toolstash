@@ -1,5 +1,6 @@
 package com.marsh.toolstash.thymeleaf
 
+import com.marsh.toolstash.thymeleaf.util.ThymeleafUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
@@ -16,11 +17,8 @@ import org.thymeleaf.templatemode.TemplateMode
 @AutoConfiguration
 @EnableConfigurationProperties(ThymeleafProperties::class)
 class ThymeleafAutoConfiguration(
-    thymeleafProperties: ThymeleafProperties
+    private val thymeleafProperties: ThymeleafProperties
 ) {
-    private val suffix = thymeleafProperties.suffix
-    private val prefix = thymeleafProperties.prefix
-    private val isCacheable = thymeleafProperties.isCacheable
 
     @Bean
     @ConditionalOnBean(SpringResourceTemplateResolver::class)
@@ -46,9 +44,9 @@ class ThymeleafAutoConfiguration(
         springResourceTemplateResolver.order = 1
         springResourceTemplateResolver.templateMode = TemplateMode.HTML
         springResourceTemplateResolver.characterEncoding = "UTF-8"
-        springResourceTemplateResolver.isCacheable = isCacheable
-        springResourceTemplateResolver.prefix = suffix
-        springResourceTemplateResolver.suffix = prefix
+        springResourceTemplateResolver.isCacheable = thymeleafProperties.isCacheable
+        springResourceTemplateResolver.prefix = thymeleafProperties.suffix
+        springResourceTemplateResolver.suffix = thymeleafProperties.prefix
         
         return springResourceTemplateResolver
     }
@@ -71,5 +69,11 @@ class ThymeleafAutoConfiguration(
         viewResolver.characterEncoding = "UTF-8"
         
         return viewResolver
+    }
+    
+    @Bean
+    @ConditionalOnBean(SpringTemplateEngine::class)
+    fun thymeleafUtil(htmlTemplateEngine: SpringTemplateEngine): ThymeleafUtil {
+        return ThymeleafUtil(htmlTemplateEngine)
     }
 }
