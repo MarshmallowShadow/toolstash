@@ -4,9 +4,8 @@ plugins {
 rootProject.name = "toolstash"
 
 include("file-util")
-include("mail-util")
 include("encoding-util")
+include("mail-util")
 include("swagger-config")
 include("security-config")
-include("jwt-utils")
 include("thymeleaf-config")
