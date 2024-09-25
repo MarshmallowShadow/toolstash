@@ -17,4 +17,11 @@ class JwtAutoConfiguration(
 ) {
     @Bean
     fun jwtTokenProvider() = JwtTokenProvider(jwtConfigProperties.secret)
+    
+    @Bean
+    @ConditionalOnProperty(
+        name = ["marsh.jwt.resolver.enabled"],
+        havingValue = "true"
+    )
+    fun jwtArgumentResolver() = JwtArgumentResolver()
 }
