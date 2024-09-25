@@ -63,7 +63,7 @@ subprojects {
     }
 
     group = "com.marsh.toolstash"
-    version = "0.0.30-SNAPSHOT"
+    version = "0.0.31-SNAPSHOT"
 
     val jar: Jar by tasks
     jar.enabled = true

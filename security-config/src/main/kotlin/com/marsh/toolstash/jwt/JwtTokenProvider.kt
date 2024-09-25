@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
-import java.util.Date
+import java.util.*
 
 @Component
 class JwtTokenProvider(
@@ -46,7 +46,7 @@ class JwtTokenProvider(
         getClaims(token)["username"] as String
 
     fun getAuthentication(claims: Claims) =
-        UsernamePasswordAuthenticationToken(claims["username"], "", getAuthority(claims))
+        UsernamePasswordAuthenticationToken(claims["username"], null, getAuthority(claims))
 
     private fun getClaims(token: String) =
         Jwts.parserBuilder()
