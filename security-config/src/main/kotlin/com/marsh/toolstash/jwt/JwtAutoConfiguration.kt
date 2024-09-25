@@ -8,10 +8,6 @@ import org.springframework.context.annotation.Bean
 
 @AutoConfiguration
 @EnableConfigurationProperties(JwtConfigProperties::class)
-@ConditionalOnProperty(
-    name = ["marsh.jwt.enabled"],
-    havingValue = "true"
-)
 class JwtAutoConfiguration(
     private val jwtConfigProperties: JwtConfigProperties
 ) {

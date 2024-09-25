@@ -4,8 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("marsh.jwt")
 data class JwtConfigProperties (
-    val enabled: Boolean = false,
-    val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION",
+    val secret: String = "SampleSecretKey",
     
     val resolver: Map<String, Any> = hashMapOf("enabled" to false)
 )
