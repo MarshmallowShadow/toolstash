@@ -50,6 +50,7 @@ class SecurityAutoConfiguration(
                             if(!it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
                         )
                 }
+                if(configProperties.enabled) authorize(anyRequest, denyAll)
             }
             addFilterBefore<UsernamePasswordAuthenticationFilter>(
                 JwtAuthenticationFilter(objectMapper, jwtTokenProvider)
