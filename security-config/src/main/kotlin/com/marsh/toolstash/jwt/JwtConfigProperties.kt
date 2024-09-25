@@ -7,5 +7,5 @@ data class JwtConfigProperties (
     val enabled: Boolean = false,
     val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION",
     
-    val resolver: Map<String, Any> = HashMap()
+    val resolver: Map<String, Any> = hashMapOf("enabled" to false)
 )

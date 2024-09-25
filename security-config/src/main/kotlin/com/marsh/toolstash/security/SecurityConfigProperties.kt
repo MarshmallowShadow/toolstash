@@ -8,7 +8,7 @@ data class SecurityConfigProperties (
     val authorizeList: Array<AuthorizeProperties>?,
     val ignoreList: Array<String>?,
     
-    val cors: Map<String, Any> = HashMap()
+    val cors: Map<String, Any> = hashMapOf("enabled" to false)
 ) {
     class AuthorizeProperties (
         val pattern: String,
