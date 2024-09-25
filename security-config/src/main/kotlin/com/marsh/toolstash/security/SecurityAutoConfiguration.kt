@@ -5,6 +5,7 @@ import com.marsh.toolstash.jwt.JwtAuthenticationFilter
 import com.marsh.toolstash.jwt.JwtTokenProvider
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -22,10 +23,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableConfigurationProperties(SecurityConfigProperties::class)
 @ConditionalOnBean(JwtTokenProvider::class)
-@ConditionalOnProperty(
-    name = ["marsh.security.enabled"],
-    havingValue = "true"
-)
 class SecurityAutoConfiguration(
     private val objectMapper: ObjectMapper,
     private val jwtTokenProvider: JwtTokenProvider,
@@ -33,7 +30,6 @@ class SecurityAutoConfiguration(
 ) {
 
     @Bean
-    @ConditionalOnProperty("marsh.security.authorizeList")
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             httpBasic { disable() }
@@ -53,7 +49,7 @@ class SecurityAutoConfiguration(
                             it.pattern,
                             if(!it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
                         )
-                }
+                } ?: authorize("/*", permitAll)
             }
             addFilterBefore<UsernamePasswordAuthenticationFilter>(
                 JwtAuthenticationFilter(objectMapper, jwtTokenProvider)
