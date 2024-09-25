@@ -42,12 +42,12 @@ class SecurityAutoConfiguration(
                         authorize(
                             HttpMethod.valueOf(it.httpMethod),
                             it.pattern,
-                            if(!it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
+                            if(it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
                         )
                     else
                         authorize(
                             it.pattern,
-                            if(!it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
+                            if(it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
                         )
                 }
                 if(configProperties.enabled) authorize(anyRequest, denyAll)
