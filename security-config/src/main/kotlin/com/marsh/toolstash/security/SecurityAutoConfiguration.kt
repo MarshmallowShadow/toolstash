@@ -49,7 +49,7 @@ class SecurityAutoConfiguration(
                             it.pattern,
                             if(!it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
                         )
-                } ?: authorize("/*", permitAll)
+                }
             }
             addFilterBefore<UsernamePasswordAuthenticationFilter>(
                 JwtAuthenticationFilter(objectMapper, jwtTokenProvider)
