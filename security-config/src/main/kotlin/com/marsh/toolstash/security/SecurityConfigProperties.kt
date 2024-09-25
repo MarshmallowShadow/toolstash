@@ -8,16 +8,12 @@ data class SecurityConfigProperties (
     val authorizeList: Array<AuthorizeProperties>?,
     val ignoreList: Array<String>?,
     
-    val cors: CorsWebConfigDefault = CorsWebConfigDefault()
+    val cors: Map<String, Any> = HashMap()
 ) {
     class AuthorizeProperties (
         val pattern: String,
         val role: Array<String>,
         val httpMethod: String? = null,
-    )
-    
-    data class CorsWebConfigDefault (
-        val enabled: Boolean = false
     )
     
     /* Auto-Generated */

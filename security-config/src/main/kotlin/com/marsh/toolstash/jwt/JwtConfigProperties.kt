@@ -7,9 +7,5 @@ data class JwtConfigProperties (
     val enabled: Boolean = false,
     val secret: String = "sampleSecretKeyDONOTUSEFORPRODUCTION",
     
-    val resolver: JwtWebConfigResolver = JwtWebConfigResolver()
-) {
-    data class JwtWebConfigResolver (
-        val enabled: Boolean = false
-    )
-}
+    val resolver: Map<String, Any> = HashMap()
+)
