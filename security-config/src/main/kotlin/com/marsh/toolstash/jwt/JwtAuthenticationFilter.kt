@@ -31,7 +31,6 @@ class JwtAuthenticationFilter(
             if (claims != null) {
                 SecurityContextHolder.getContext().authentication = jwtTokenProvider.getAuthentication(claims)
             }
-            println(claims)
             filterChain.doFilter(request, response)
         } catch (exception: SignatureException) {
             sendErrorMessage(response, JwtException(HttpStatus.UNAUTHORIZED, JwtErrorCode.INVALID_SIGNATURE, "유효하지 않은 토큰입니다."))
