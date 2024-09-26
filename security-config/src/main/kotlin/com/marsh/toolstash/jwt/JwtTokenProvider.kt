@@ -25,7 +25,7 @@ class JwtTokenProvider(
             .claim("username", username)
             .claim("role", role)
             .setIssuedAt(now)
-            .setExpiration(Date(expireIn))
+            .setExpiration(Date(now.time + expireIn))
             .signWith(secretKey, SignatureAlgorithm.HS256)
             .compact()
 
