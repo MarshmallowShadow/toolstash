@@ -71,12 +71,4 @@ class SecurityAutoConfiguration(
                 )
             }
         }
-
-    @Bean
-    fun characterEncodingFilter(): CharacterEncodingFilter {
-        val filter = CharacterEncodingFilter()
-        filter.encoding = "UTF-8"
-        filter.setForceEncoding(true)
-        return filter
-    }
 }
