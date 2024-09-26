@@ -35,6 +35,8 @@ subprojects {
         mavenCentral()
 }
 
+    group = "com.marsh.toolstash"
+
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("commons-io:commons-io:2.7")
@@ -44,26 +46,27 @@ subprojects {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
 
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
-                credentials {
-                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+    val shouldPublish = project.hasProperty("shouldPublish") && project.property("shouldPublish") == "true"
+
+    if(shouldPublish) {
+        publishing {
+            repositories {
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
+                    credentials {
+                        username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                        password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                    }
+                }
+            }
+            publications {
+                register<MavenPublication>("gpr") {
+                    from(components["java"])
                 }
             }
         }
-        publications {
-            register<MavenPublication>("gpr") {
-                from(components["java"])
-            }
-        }
     }
-
-    group = "com.marsh.toolstash"
-    version = "0.0.37-SNAPSHOT"
 
     val jar: Jar by tasks
     jar.enabled = true
