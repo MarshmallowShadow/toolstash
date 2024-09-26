@@ -23,7 +23,7 @@ class CustomAuthenticationEntryPoint(
             ErrorResponse(
                 httpStatus = HttpStatus.UNAUTHORIZED,
                 errorCode = "UNAUTHORIZED",
-                message = "Illegal Access Detected."
+                message = "접속 인증 실패하였습니다."
             )
         ))
     }
