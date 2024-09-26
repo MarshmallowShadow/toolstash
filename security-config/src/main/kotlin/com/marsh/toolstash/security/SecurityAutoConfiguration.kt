@@ -38,17 +38,17 @@ class SecurityAutoConfiguration(
             cors { }
             sessionManagement { sessionCreationPolicy = SessionCreationPolicy.STATELESS }
             authorizeRequests {
-                configProperties.authorizeList?.forEach { 
+                configProperties.authorizeList?.forEach {
                     if(it.httpMethod != null)
                         authorize(
                             HttpMethod.valueOf(it.httpMethod),
                             it.pattern,
-                            if(it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
+                            if(it.role.contains("ALL")) permitAll else hasAnyAuthority(*it.role)
                         )
                     else
                         authorize(
                             it.pattern,
-                            if(it.role.contains("ALL")) permitAll else hasAnyRole(*it.role)
+                            if(it.role.contains("ALL")) permitAll else hasAnyAuthority(*it.role)
                         )
                 }
                 if(configProperties.enabled) authorize(anyRequest, denyAll)
