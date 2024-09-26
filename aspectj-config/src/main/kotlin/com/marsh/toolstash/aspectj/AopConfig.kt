@@ -1,6 +1,5 @@
 package com.marsh.toolstash.aspectj
 
-import mu.KLogger
 import mu.KotlinLogging
 import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Aspect
@@ -9,11 +8,11 @@ import org.springframework.stereotype.Component
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
 
-@Component
 @Aspect
-class AopConfig(
-    private val log: KLogger
-) {
+@Component
+class AopConfig {
+    private val log = KotlinLogging.logger {}
+    
     @Before("execution(* *..controller.*.*(..))")
     fun logRequestURI() {
         val request = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes).request
