@@ -5,7 +5,6 @@ import com.marsh.toolstash.jwt.JwtAuthenticationFilter
 import com.marsh.toolstash.jwt.JwtTokenProvider
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -18,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.filter.CharacterEncodingFilter
 import java.util.*
 
 @AutoConfiguration
@@ -71,4 +71,12 @@ class SecurityAutoConfiguration(
                 )
             }
         }
+
+    @Bean
+    fun characterEncodingFilter(): CharacterEncodingFilter {
+        val filter = CharacterEncodingFilter()
+        filter.encoding = "UTF-8"
+        filter.setForceEncoding(true)
+        return filter
+    }
 }
