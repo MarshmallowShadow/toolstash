@@ -1,5 +1,5 @@
 
-version = "0.0.39-SNAPSHOT"
+version = "0.0.40-SNAPSHOT"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
