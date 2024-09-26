@@ -13,5 +13,5 @@ class AspectjAutoConfiguration {
     
     @Bean
     @ConditionalOnBean(KLogger::class)
-    fun aopConfig(log: KLogger): AopConfig = AopConfig(log)
+    fun aopConfig(): AopConfig = AopConfig(logger())
 }
