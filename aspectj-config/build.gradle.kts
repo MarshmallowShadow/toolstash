@@ -1,5 +1,5 @@
 
-version = "0.0.3-SNAPSHOT"
+version = "1.0.0"
 
 dependencies {
     implementation("org.aspectj:aspectjweaver:1.9.7")

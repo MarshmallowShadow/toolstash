@@ -1,5 +1,5 @@
 
-version = "0.0.38-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
