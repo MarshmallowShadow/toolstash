@@ -1,5 +1,5 @@
 
-version = "0.0.1-SNAPSHOT"
+version = project.findProperty("version")!!
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")

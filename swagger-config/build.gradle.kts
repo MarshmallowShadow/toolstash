@@ -1,5 +1,5 @@
 
-version = "0.0.1-SNAPSHOT"
+version = project.findProperty("version")!!
 
 dependencies {
     implementation("io.springfox:springfox-boot-starter:3.0.0")
