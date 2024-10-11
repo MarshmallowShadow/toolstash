@@ -2,14 +2,29 @@
 
 build.gradle
 ```
+plugins {
+    
+    ...
+    
+    id("nu.studer.credentials") version "3.0" // jib
+}
+
+...
+
+val credentials: CredentialsContainer by project
+val githubUsername: String? = credentials.forKey("github.username")
+val githubToken: String? = credentials.forKey("github.token")
+
+...
+
 repositories {
     mavenCentral()
     maven {
         url = uri("https://maven.pkg.github.com/vitasoftGit/VitaPack-Java")
         credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-		}
+            username = githubUsername ?: System.getenv("USERNAME")
+            password = githubToken ?: System.getenv("TOKEN")
+        }
 	}
 }
 ```

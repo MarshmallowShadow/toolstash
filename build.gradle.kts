@@ -1,3 +1,4 @@
+import nu.studer.gradle.credentials.domain.CredentialsContainer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -8,6 +9,7 @@ plugins {
     id("org.springframework.boot") version "3.3.0"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
     id("maven-publish")
+    id("nu.studer.credentials") version "3.0" // jib
 }
 
 repositories {
@@ -46,6 +48,7 @@ subprojects {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
     }
 
+    val credentials: CredentialsContainer by project
     val shouldPublish = project.hasProperty("shouldPublish") && project.property("shouldPublish") == "true"
 
     if(shouldPublish) {
@@ -55,8 +58,8 @@ subprojects {
                     name = "GitHubPackages"
                     url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
                     credentials {
-                        username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                        password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                        username = credentials.forKey("github.username") ?: System.getenv("USERNAME")
+                        password = credentials.forKey("github.token") ?: System.getenv("TOKEN")
                     }
                 }
             }

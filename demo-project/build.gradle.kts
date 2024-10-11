@@ -1,3 +1,5 @@
+import nu.studer.gradle.credentials.domain.CredentialsContainer
+
 plugins {
     kotlin("plugin.jpa") version "1.9.10"
 }
@@ -17,13 +19,17 @@ configurations {
     }
 }
 
+val credentials: CredentialsContainer by project
+val githubUsername: String? = credentials.forKey("github.username")
+val githubToken: String? = credentials.forKey("github.token")
+
 repositories {
     mavenCentral()
     maven {
-        url = uri("https://maven.pkg.github.com/MarshmallowShadow/toolstash")
+        url = uri("https://maven.pkg.github.com/vitasoftGit/VitaPack-Java")
         credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            username = githubUsername ?: System.getenv("USERNAME")
+            password = githubToken ?: System.getenv("TOKEN")
         }
     }
 }
