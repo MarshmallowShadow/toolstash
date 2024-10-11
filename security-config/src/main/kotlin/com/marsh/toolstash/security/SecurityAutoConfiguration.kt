@@ -51,18 +51,21 @@ class SecurityAutoConfiguration(
                             if(it.role.contains("ALL")) permitAll else hasAnyAuthority(*it.role)
                         )
                 }
-                if(configProperties.enabled) authorize(anyRequest, denyAll)
+                if(!configProperties.enabled) authorize(anyRequest, permitAll)
+                else authorize(anyRequest, denyAll)
             }
             addFilterBefore<UsernamePasswordAuthenticationFilter>(
                 JwtAuthenticationFilter(objectMapper, jwtTokenProvider)
             )
-            exceptionHandling { authenticationEntryPoint = CustomAuthenticationEntryPoint(objectMapper) }
+            exceptionHandling { authenticationEntryPoint =
+                CustomAuthenticationEntryPoint(objectMapper)
+            }
         }
         return http.build()
     }
 
     @Bean
-    @ConditionalOnProperty("marsh.security.ignoreList")
+    @ConditionalOnProperty("vita.security.ignoreList")
     fun ignoringCustomizer() =
         WebSecurityCustomizer { web: WebSecurity ->
             configProperties.ignoreList?.let {
