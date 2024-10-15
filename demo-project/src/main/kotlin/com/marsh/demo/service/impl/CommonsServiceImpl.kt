@@ -16,9 +16,9 @@ class CommonsServiceImpl: CommonsService {
     ): Map<String, Any> {
         val map = HashMap<String, Any>()
 
-        map["SHA256"] = EncUtil.SHA256Encrypt(text)
-        map["MD5"] = EncUtil.MD5Encrypt(text, salt, splitKey)
-        map["AES256"] = EncUtil.AES256Encrypt(text, key, salt, splitKey)
+        map["SHA256"] = EncUtil.sha256Encrypt(text)
+        map["MD5"] = EncUtil.md5Encrypt(text, salt, splitKey)
+        map["AES256"] = EncUtil.aes256Encrypt(text, key, salt, splitKey)
 
         return map
     }
@@ -31,7 +31,7 @@ class CommonsServiceImpl: CommonsService {
     ): Map<String, Any> {
         val map = HashMap<String, Any>()
 
-        map["decrypted"] = EncUtil.AES256Decrypt(text, key, salt, splitKey)
+        map["decrypted"] = EncUtil.aes256Decrypt(text, key, salt, splitKey)
 
         return map
     }

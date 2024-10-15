@@ -37,12 +37,12 @@ gpr.key=$TOKEN
 ***\$USERNAME**은 GitHub 사용자 아이디, **\$TOKEN**은 read:repository 권한 있는 액세스 토큰입니다
 
 
-### Commons
+### File Utilities
 
 pom.xml
 ```
 <dependency>
-  <groupId>com.vita</groupId>
+  <groupId>com.marsh.toolstash</groupId>
   <artifactId>commons</artifactId>
   <version>1.0.0</version>
 </dependency> 
@@ -50,7 +50,23 @@ pom.xml
 
 build.gradle.kts
 ```
-implementation("com.vita:commons:1.0.0")
+implementation("com.marsh.toolstash:file-util:1.0.0")
+```
+
+### Encryption Utilities
+
+pom.xml
+```
+<dependency>
+  <groupId>com.marsh.toolstash</groupId>
+  <artifactId>encoding-util</artifactId>
+  <version>1.0.0</version>
+</dependency> 
+```
+
+build.gradle.kts
+```
+implementation("com.marsh.toolstash:encoding-util:2.0.0")
 ```
 
 
@@ -59,7 +75,7 @@ implementation("com.vita:commons:1.0.0")
 pom.xml
 ```
 <dependency>
-  <groupId>com.vita</groupId>
+  <groupId>com.marsh.toolstash</groupId>
   <artifactId>mail-util</artifactId>
   <version>1.0.0</version>
 </dependency> 
@@ -67,7 +83,7 @@ pom.xml
 
 build.gradle.kts
 ```
-implementation("com.vita:mail-util:1.0.0")
+implementation("com.marsh.toolstash:mail-util:1.0.0")
 ```
 
 application.yml (예시)
@@ -88,7 +104,7 @@ STMP 호스트와 포트 목록: https://www.arclab.com/en/kb/email/list-of-smtp
 pom.xml
 ```
 <dependency>
-  <groupId>com.vita</groupId>
+  <groupId>com.marsh.toolstash</groupId>
   <artifactId>security-config</artifactId>
   <version>1.0.0</version>
 </dependency> 
@@ -96,7 +112,7 @@ pom.xml
 
 build.gradle.kts
 ```
-implementation("com.vita:security-config:1.0.0")
+implementation("com.marsh.toolstash:security-config:1.0.0")
 ```
 
 application.yml (예시)
@@ -127,7 +143,7 @@ security:
 pom.xml
 ```
 <dependency>
-  <groupId>com.vita</groupId>
+  <groupId>com.marsh.toolstash</groupId>
   <artifactId>aspectj-config</artifactId>
   <version>1.0.0</version>
 </dependency> 
@@ -135,7 +151,7 @@ pom.xml
 
 build.gradle.kts
 ```
-implementation("com.vita:aspectj-config:1.0.0")
+implementation("com.marsh.toolstash:aspectj-config:1.0.0")
 ```
 
 ## Demo Project

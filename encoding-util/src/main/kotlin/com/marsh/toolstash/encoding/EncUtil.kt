@@ -1,5 +1,6 @@
 package com.marsh.toolstash.encoding
 
+import com.fasterxml.uuid.Generators
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 import java.security.SecureRandom
@@ -14,7 +15,7 @@ object EncUtil {
      * @Description
      * base64encode( encrypt(password + salt) + split-key + iv )
      */
-    fun AES256Encrypt(text: String, key: String, salt: String, splitKey: String): String {
+    fun aes256Encrypt(text: String, key: String, salt: String, splitKey: String): String {
         val iv: String = getRandomString(16)
         val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
         val keySpec = SecretKeySpec(key.toByteArray(StandardCharsets.UTF_8), "AES")
@@ -30,7 +31,7 @@ object EncUtil {
      * encryptedData: encrypt(password + salt) .subString(split-key)
      * iv: 16 length 난수
      */
-    fun AES256Decrypt(data: String, key: String, salt: String, splitKey: String): String {
+    fun aes256Decrypt(data: String, key: String, salt: String, splitKey: String): String {
         val decoded: ByteArray = Base64.getDecoder().decode(data)
         val decodedString = String(decoded, StandardCharsets.UTF_8)
 
@@ -52,7 +53,7 @@ object EncUtil {
         return String(decryptedBytes, StandardCharsets.UTF_8).split(salt)[0]
     }
 
-    fun MD5Encrypt(text: String, salt: String, splitKey: String): String {
+    fun md5Encrypt(text: String, salt: String, splitKey: String): String {
         val plainText = "$text$splitKey$salt"
         val md: MessageDigest = MessageDigest.getInstance("MD5")
         md.update(plainText.toByteArray())
@@ -60,10 +61,14 @@ object EncUtil {
         return digestBytes.joinToString("") { "%02x".format(it) }
     }
 
-    fun SHA256Encrypt(text: String) =
+    fun sha256Encrypt(text: String) =
         MessageDigest.getInstance("SHA-256")
             .digest(text.toByteArray())
             .fold("") { str, byte -> str + "%02x".format(byte) }
+
+    fun generateUuid() : String {
+        return Generators.timeBasedGenerator().generate().toString()
+    }
     
     
     private fun getRandomString(length: Int): String {

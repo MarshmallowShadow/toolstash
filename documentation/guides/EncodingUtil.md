@@ -39,3 +39,8 @@ fun SHA256Encrypt (
     text: String
 ): String
 ```
+
+UUID Generator
+```
+fun generateUuid() : String
+```
