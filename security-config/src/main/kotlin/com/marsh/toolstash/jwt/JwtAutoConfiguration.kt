@@ -12,7 +12,8 @@ class JwtAutoConfiguration(
     private val jwtConfigProperties: JwtConfigProperties
 ) {
     @Bean
-    fun jwtTokenProvider() = JwtTokenProvider(jwtConfigProperties.secret)
+    @ConditionalOnProperty("marsh.jwt.secret")
+    fun jwtTokenProvider() = JwtTokenProvider(jwtConfigProperties.secret!!)
     
     @Bean
     @ConditionalOnProperty(

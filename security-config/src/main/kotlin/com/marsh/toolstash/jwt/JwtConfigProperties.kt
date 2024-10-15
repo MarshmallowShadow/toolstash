@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("marsh.jwt")
 data class JwtConfigProperties (
-    val secret: String = "DefaultSecretKey00NOTRECOMMENDED",
+    val secret: String?,
     
-    val resolver: Map<String, Any> = hashMapOf("enabled" to false)
+    val resolver: Map<String, Any>?
 )

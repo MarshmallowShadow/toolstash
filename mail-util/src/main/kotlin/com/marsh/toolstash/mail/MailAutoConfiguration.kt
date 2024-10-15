@@ -22,6 +22,7 @@ class MailAutoConfiguration(
 ){
     @Bean
     @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix="marsh.mail", name=["host", "port", "username", "password"])
     fun javaMailSender(): JavaMailSender {
         val props = Properties()
         props.setProperty("mail.smtp.auth", mailConfigProperties.smtpAuth.toString())
@@ -29,7 +30,7 @@ class MailAutoConfiguration(
         
         val javaMailSender = JavaMailSenderImpl()
         javaMailSender.host = mailConfigProperties.host
-        javaMailSender.port = mailConfigProperties.port
+        javaMailSender.port = mailConfigProperties.port!!
         javaMailSender.username = mailConfigProperties.username
         javaMailSender.password = mailConfigProperties.password
         javaMailSender.javaMailProperties = props

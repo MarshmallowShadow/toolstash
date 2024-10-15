@@ -24,6 +24,7 @@ import java.util.*
 @EnableWebSecurity
 @EnableConfigurationProperties(SecurityConfigProperties::class)
 @ConditionalOnBean(JwtTokenProvider::class)
+@ConditionalOnProperty(name=["marsh.security.enabled"], havingValue = "true")
 class SecurityAutoConfiguration(
     private val objectMapper: ObjectMapper,
     private val jwtTokenProvider: JwtTokenProvider,
@@ -31,6 +32,7 @@ class SecurityAutoConfiguration(
 ) {
 
     @Bean
+    @ConditionalOnProperty("marsh.security.authorize-list")
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             httpBasic { disable() }
@@ -51,8 +53,7 @@ class SecurityAutoConfiguration(
                             if(it.role.contains("ALL")) permitAll else hasAnyAuthority(*it.role)
                         )
                 }
-                if(!configProperties.enabled) authorize(anyRequest, permitAll)
-                else authorize(anyRequest, denyAll)
+                authorize(anyRequest, denyAll)
             }
             addFilterBefore<UsernamePasswordAuthenticationFilter>(
                 JwtAuthenticationFilter(objectMapper, jwtTokenProvider)
@@ -65,7 +66,7 @@ class SecurityAutoConfiguration(
     }
 
     @Bean
-    @ConditionalOnProperty("vita.security.ignoreList")
+    @ConditionalOnProperty("marsh.security.ignore-list")
     fun ignoringCustomizer() =
         WebSecurityCustomizer { web: WebSecurity ->
             configProperties.ignoreList?.let {
