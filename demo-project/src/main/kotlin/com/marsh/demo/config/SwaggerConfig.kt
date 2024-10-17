@@ -14,15 +14,15 @@ class SwaggerConfig {
     fun springShopOpenAPI(): OpenAPI {
         return OpenAPI()
             .info(
-                Info().title("VitaPack-Java Demo")
-                    .description("VitaPack(Java) Sample")
+                Info().title("Toolstash Demo")
+                    .description("Kotlin-Based Multi-Module Project Demo")
                     .version("v1.0.0")
-                    .license(License().name("비타소프트 웹사이트").url("http://www.vitasoft.co.kr/"))
+                    .license(License().name("MarshmallowShadow").url("http://www.github.com/MarshmallowShadow"))
             )
             .externalDocs(
                 ExternalDocumentation()
-                    .description("VitaPack-Java Github")
-                    .url("https://github.com/vitasoftGit/VitaPack-Java")
+                    .description("Toolstash Github")
+                    .url("https://github.com/MarshmallowShadow/toolstash")
             )
     }
 }
